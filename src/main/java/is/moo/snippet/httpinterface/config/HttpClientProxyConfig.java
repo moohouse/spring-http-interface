@@ -10,13 +10,13 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 @Configuration
 public class HttpClientProxyConfig {
   @Bean
-  WebClient webClient() {
+  WebClient jsonplaceholderWebClient() {
     return WebClient.builder().baseUrl("https://jsonplaceholder.typicode.com").build();
   }
   @Bean
-  PostClient postClient(WebClient webClient) {
-    HttpServiceProxyFactory httpServiceProxyFactory =
-        HttpServiceProxyFactory.builder(WebClientAdapter.forClient(webClient))
+  PostClient postsClient(WebClient jsonplaceholderWebClient) {
+     HttpServiceProxyFactory httpServiceProxyFactory =
+        HttpServiceProxyFactory.builder(WebClientAdapter.forClient(jsonplaceholderWebClient))
             .build();
     return httpServiceProxyFactory.createClient(PostClient.class);
   }

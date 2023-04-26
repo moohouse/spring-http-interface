@@ -23,4 +23,13 @@ public class HttpInterfaceService {
     }
   }
 
+  public ResponseEntity<Post> getPost(int id) {
+    try {
+      return ResponseEntity.ok(postClient.getPost(id));
+    } catch (Exception e) {
+      log.error(e.getMessage());
+      return ResponseEntity.internalServerError().build();
+    }
+  }
+
 }
